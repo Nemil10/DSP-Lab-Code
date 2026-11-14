@@ -1,0 +1,37 @@
+import cv2
+import numpy as np
+from google.colab.patches import cv2_imshow
+
+# Load the image in grayscale
+image = cv2.imread('/content/mountain.png', 0)
+
+# Define the kernel (structuring element)
+kernel = np.ones((5, 5), np.uint8)
+
+# Perform Erosion
+erosion = cv2.erode(image, kernel, iterations=1)
+
+# Perform Dilation
+dilation = cv2.dilate(image, kernel, iterations=1)
+
+# Perform Opening
+opening = cv2.morphologyEx(image, cv2.MORPH_OPEN, kernel)
+
+# Perform Closing
+closing = cv2.morphologyEx(image, cv2.MORPH_CLOSE, kernel)
+
+# Display original image and results
+print("Original Image")
+cv2_imshow(image)
+
+print("Erosion")
+cv2_imshow(erosion)
+
+print("Dilation")
+cv2_imshow(dilation)
+
+print("Opening")
+cv2_imshow(opening)
+
+print("Closing")
+cv2_imshow(closing)
